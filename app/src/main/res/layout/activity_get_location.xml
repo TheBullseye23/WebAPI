@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8AD1F1"
+    android:orientation="vertical"
+    tools:context=".getLocationActivity">
+
+
+    <EditText
+        android:id="@+id/MONTH"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:hint="Enter YYYY-MM"
+        android:textStyle="bold"
+        android:layout_margin="50dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/LATITUDE"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MONTH"
+        android:hint="Enter Latitude"
+        android:textStyle="bold"
+        android:layout_margin="50dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/LONGITUDE"
+        android:layout_width="123dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/LATITUDE"
+        android:hint="Enter Longitude"
+        android:textStyle="bold"
+        android:layout_margin="50dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/btnLocation"
+        android:onClick="gotoLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LONGITUDE"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="#536AE9"
+        android:text="Find" />
+
+
+</RelativeLayout>

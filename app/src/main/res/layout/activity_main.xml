@@ -33,6 +33,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="102dp"
         android:layout_marginBottom="50dp"
+        android:onClick="GetLocation"
         android:background="#15E415"
         android:text="Neighbourhood"
         tools:layout_editor_absoluteX="134dp"

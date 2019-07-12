@@ -1,7 +1,8 @@
-package com.hfad.samplewebapi.model;
+package com.hfad.samplewebapi.model.FORCES;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.hfad.samplewebapi.model.FORCES.ForcesData2;
 
 import java.util.List;
 

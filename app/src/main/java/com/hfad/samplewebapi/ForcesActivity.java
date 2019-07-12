@@ -1,5 +1,6 @@
 package com.hfad.samplewebapi;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +12,8 @@ import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 
 
-import com.hfad.samplewebapi.model.ForcesData;
+import com.hfad.samplewebapi.Adapter.recycleradapter;
+import com.hfad.samplewebapi.model.FORCES.ForcesData;
 import com.hfad.samplewebapi.rest.InterfaceForce1;
 import com.hfad.samplewebapi.rest.RetrofitClient;
 
@@ -20,15 +22,18 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
-public class ForcesActivity extends AppCompatActivity {
+public class ForcesActivity extends AppCompatActivity implements recycleradapter.OnItemClickListener {
+
+    public static final String forcename=null;
 
     private RecyclerView recyclerView;
     private List<ForcesData> forcesData;
     private recycleradapter mrecycleradapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private InterfaceForce1 mInterface;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class ForcesActivity extends AppCompatActivity {
                 forcesData = response.body();
                 mrecycleradapter = new recycleradapter(forcesData);
                 recyclerView.setAdapter(mrecycleradapter);
+                mrecycleradapter.setOnItemClickListener(ForcesActivity.this);
 
             }
 
@@ -84,7 +90,14 @@ public class ForcesActivity extends AppCompatActivity {
     });
 
         return true;
+    }
 
+    @Override
+    public void onItemClick(int position) {
+            Intent intent = new Intent(this,SpecialForcesActivity.class);
+            ForcesData clickeditem = forcesData.get(position);
+            intent.putExtra(forcename,clickeditem.getId());
+            startActivity(intent);
     }
 }
 
