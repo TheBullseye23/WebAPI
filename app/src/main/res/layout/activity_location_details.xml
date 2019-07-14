@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8AD1F1"
+    tools:context=".LocationDetailsActivity">
+
+
+    <TextView
+        android:id="@+id/tvcategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:text="Category:"
+        android:textColor="#EE0C0C0C"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etcategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@id/tvcategory"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:id="@+id/tvmonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Month:"
+        android:layout_below="@id/etcategory"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:textSize="24sp"
+        android:textColor="#EE0C0C0C"
+        />
+
+    <EditText
+        android:id="@+id/etmonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@id/tvmonth"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/tvlocationsubtype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LocationSubtype"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/etmonth"
+        android:textColor="#EE0C0C0C"
+        android:textSize="24sp"/>
+
+    <EditText
+        android:id="@+id/etlocationsubtype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvlocationsubtype"/>
+</RelativeLayout>

@@ -16,7 +16,9 @@
         android:hint="Enter YYYY-MM"
         android:textStyle="bold"
         android:layout_margin="50dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+
+        />
 
     <EditText
         android:id="@+id/LATITUDE"
@@ -26,7 +28,9 @@
         android:hint="Enter Latitude"
         android:textStyle="bold"
         android:layout_margin="50dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+
+        />
 
     <EditText
         android:id="@+id/LONGITUDE"
@@ -36,7 +40,9 @@
         android:hint="Enter Longitude"
         android:textStyle="bold"
         android:layout_margin="50dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+
+        />
 
     <Button
         android:id="@+id/btnLocation"
@@ -52,7 +58,9 @@
         android:layout_marginRight="50dp"
         android:layout_marginBottom="50dp"
         android:background="#536AE9"
-        android:text="Find" />
+        android:text="Find"
+
+        />
 
 
 </RelativeLayout>

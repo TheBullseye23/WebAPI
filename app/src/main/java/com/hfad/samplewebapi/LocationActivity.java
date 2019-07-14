@@ -11,51 +11,59 @@ import com.hfad.samplewebapi.model.LOCATION.MF_location;
 import com.hfad.samplewebapi.rest.InterfaceForce1;
 import com.hfad.samplewebapi.rest.RetrofitClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LocationActivity extends AppCompatActivity {
-
-    private String mMONTH;
-    private String mLATITUDE;
-    private String mLONGITUDE;
 
 
-    private RecyclerView lrecyclerview;
-    private RecyclerView.LayoutManager mLayoutManager;
+public class LocationActivity extends AppCompatActivity implements locationadapter.onItemClickListener {
+    private String mMonth;
+    private String mlatitude;
+    private String mLongitude;
+
+    private static final String mcategory=null;
+    private static final String mlocationSubtype=null;
+    private static final String mmonth=null;
+
+    private RecyclerView mrecyclerview;
+    private RecyclerView.LayoutManager mlayoutmanager;
     private locationadapter mlocationadapter;
-    private List<MF_location> locations;
+    private InterfaceForce1 mInterface;
 
-    private InterfaceForce1 linterface;
+    private List<MF_location> locations = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        Intent intent = getIntent();
-        mMONTH =intent.getStringExtra("MONTH");
-        mLATITUDE = intent.getStringExtra("LATITUDE");
-        mLONGITUDE = intent.getStringExtra("LONGITUDE");
+        Intent intent =getIntent();
+        mMonth =intent.getStringExtra("MONTH");
+        mlatitude = intent.getStringExtra("LATITUDE");
+        mLongitude = intent.getStringExtra("LONGITUDE");
 
-        lrecyclerview = findViewById(R.id.RVlocation);
-        mLayoutManager = new LinearLayoutManager(this);
-        lrecyclerview.setLayoutManager(mLayoutManager);
+        mrecyclerview = findViewById(R.id.rvlocation);
+        mlayoutmanager = new LinearLayoutManager(this);
+        mrecyclerview.setLayoutManager(mlayoutmanager);
 
-        linterface = RetrofitClient.getRetrofitClient().create(InterfaceForce1.class);
 
-        Call <List<MF_location>> call = linterface.getLocationData("crimes-at-location?date="+mMONTH+"&lat="+mLATITUDE+"&lng="+mLONGITUDE);
+        mInterface = RetrofitClient.getRetrofitClient().create(InterfaceForce1.class);
+
+        Call<List<MF_location>> call = mInterface.getLocationData("crimes-at-location?date="+mMonth+"&lat="+mlatitude+"&lng="+mLongitude);
 
         call.enqueue(new Callback<List<MF_location>>() {
             @Override
             public void onResponse(Call<List<MF_location>> call, Response<List<MF_location>> response) {
+
                 locations = response.body();
                 mlocationadapter = new locationadapter(locations);
-                lrecyclerview.setAdapter(mlocationadapter);
-                mlocationadapter.notifyDataSetChanged();
+                mrecyclerview.setAdapter(mlocationadapter);
+                mlocationadapter.setOnItemClickListener(LocationActivity.this);
 
             }
 
@@ -64,11 +72,17 @@ public class LocationActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    public void onItemClick(int position) {
 
-
-
-
-
+        Intent intent = new Intent(this, LocationDetailsActivity.class);
+        MF_location location = locations.get(position);
+        intent.putExtra(mcategory,location.getCategory());
+        intent.putExtra(mlocationSubtype,location.getLocationSubtype());
+        intent.putExtra(mmonth,location.getMonth());
+        startActivity(intent);
     }
 }
+

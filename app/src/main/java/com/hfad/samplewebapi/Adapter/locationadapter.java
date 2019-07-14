@@ -13,33 +13,37 @@ import com.hfad.samplewebapi.model.LOCATION.MF_location;
 
 import java.util.List;
 
-public class locationadapter extends RecyclerView.Adapter<locationadapter.locationViewHolder> {
+public class locationadapter extends RecyclerView.Adapter<locationadapter.locationviewholder> {
 
     private List<MF_location> locations;
 
-    public locationadapter(List <MF_location> locations)
-    {
+    private onItemClickListener mlistener;
+
+    public interface onItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+        mlistener = listener;
+    }
+
+
+    public locationadapter(List<MF_location> locations) {
         this.locations = locations;
     }
 
-
     @NonNull
     @Override
-    public locationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_location,viewGroup,false);
-        return new locationViewHolder(view);
-
+    public locationviewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_location, viewGroup, false);
+        return new locationviewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull locationViewHolder viewHolder, int i) {
-
-        viewHolder.category.setText(locations.get(viewHolder.getAdapterPosition()).getCategory());
-        viewHolder.locationtype.setText(locations.get(viewHolder.getAdapterPosition()).getLocationType());
-        Log.d(" Category name "," " );
-        Log.d(" Item no ", String.valueOf(i));
-
+    public void onBindViewHolder(@NonNull locationviewholder viewHolder, int i) {
+        viewHolder.category.setText(locations.get(i).getCategory());
+        viewHolder.locationtype.setText(locations.get(i).getLocationType());
+        Log.d(" item no ", String.valueOf(i));
     }
 
     @Override
@@ -47,18 +51,29 @@ public class locationadapter extends RecyclerView.Adapter<locationadapter.locati
         return locations.size();
     }
 
-    public class locationViewHolder extends RecyclerView.ViewHolder{
-
+    public class locationviewholder extends RecyclerView.ViewHolder {
         TextView category;
         TextView locationtype;
 
-       public locationViewHolder(View itemview)
-        {
+        public locationviewholder(View itemview) {
             super(itemview);
-            category = itemview.findViewById(R.id.TVcategory);
-            locationtype = itemview.findViewById(R.id.TVlocationtype);
+            category = itemview.findViewById(R.id.tvCategory);
+            locationtype = itemview.findViewById(R.id.tvlocationtype);
+            itemview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mlistener != null) {
+                        int position = getAdapterPosition();
+                        if (position!= RecyclerView.NO_POSITION) {
+                            mlistener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
 
         }
 
     }
+
 }

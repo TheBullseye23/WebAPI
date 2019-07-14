@@ -19,10 +19,10 @@ import java.util.List;
 
 import retrofit2.Callback;
 
-public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHolder1> implements Filterable {
+public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHolder1>  {
 
     private List<ForcesData> forcesdata=new ArrayList<>() ;
-    private List<ForcesData> forcesdataFULL;
+
     private  OnItemClickListener mListener;
 
     public interface OnItemClickListener{
@@ -37,9 +37,6 @@ public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHo
     public recycleradapter ( List<ForcesData> forcesdata)
     {
         this.forcesdata=forcesdata;
-        forcesdataFULL= new ArrayList<>(forcesdata);
-
-
     }
 
 
@@ -60,40 +57,6 @@ public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHo
     public int getItemCount() {
         return forcesdata.size();
     }
-
-    @Override
-    public Filter getFilter() {
-        return filter;
-    }
-
-    private  Filter filter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-        List<ForcesData> filteredList = new ArrayList<>();
-
-        if(constraint==null||constraint=="0")
-            filteredList.addAll(forcesdataFULL);
-        else
-        {
-            String filterpattern = constraint.toString().toLowerCase().trim();
-            for(ForcesData item: forcesdataFULL)
-            {
-                if(item.getName().toLowerCase().contains(filterpattern))
-                    filteredList.add(item);
-            }
-        }
-              FilterResults results = new FilterResults();
-                results.values=filteredList;
-                return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-                forcesdata.clear();
-                forcesdataFULL.addAll((List)results.values);
-                notifyDataSetChanged();
-        }
-    };
 
     public class ViewHolder1 extends RecyclerView.ViewHolder
     {   TextView name;

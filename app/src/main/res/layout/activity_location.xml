@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LocationActivity">
+    tools:context=".LocationActivity"
+    android:id="@+id/locationlayout"
+    android:background="#8AD1F1"
+    android:scrollbars="vertical"
+    >
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/RVlocation"
+        android:id="@+id/rvlocation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        >
+        android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
-    
-    
+
 </RelativeLayout>
