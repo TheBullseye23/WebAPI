@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 
 
-public class LocationActivity extends AppCompatActivity implements locationadapter.onItemClickListener {
+public class LocationActivity extends AppCompatActivity  {
     private String mMonth;
     private String mlatitude;
     private String mLongitude;
@@ -63,7 +63,7 @@ public class LocationActivity extends AppCompatActivity implements locationadapt
                 locations = response.body();
                 mlocationadapter = new locationadapter(locations);
                 mrecyclerview.setAdapter(mlocationadapter);
-                mlocationadapter.setOnItemClickListener(LocationActivity.this);
+
 
             }
 
@@ -74,15 +74,6 @@ public class LocationActivity extends AppCompatActivity implements locationadapt
         });
     }
 
-    @Override
-    public void onItemClick(int position) {
 
-        Intent intent = new Intent(this, LocationDetailsActivity.class);
-        MF_location location = locations.get(position);
-        intent.putExtra(mcategory,location.getCategory());
-        intent.putExtra(mlocationSubtype,location.getLocationSubtype());
-        intent.putExtra(mmonth,location.getMonth());
-        startActivity(intent);
-    }
 }
 

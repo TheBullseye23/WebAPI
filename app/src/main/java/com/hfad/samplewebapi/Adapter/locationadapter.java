@@ -17,17 +17,6 @@ public class locationadapter extends RecyclerView.Adapter<locationadapter.locati
 
     private List<MF_location> locations;
 
-    private onItemClickListener mlistener;
-
-    public interface onItemClickListener {
-        void onItemClick(int position);
-    }
-
-    public void setOnItemClickListener(onItemClickListener listener) {
-        mlistener = listener;
-    }
-
-
     public locationadapter(List<MF_location> locations) {
         this.locations = locations;
     }
@@ -59,19 +48,6 @@ public class locationadapter extends RecyclerView.Adapter<locationadapter.locati
             super(itemview);
             category = itemview.findViewById(R.id.tvCategory);
             locationtype = itemview.findViewById(R.id.tvlocationtype);
-            itemview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mlistener != null) {
-                        int position = getAdapterPosition();
-                        if (position!= RecyclerView.NO_POSITION) {
-                            mlistener.onItemClick(position);
-                        }
-                    }
-                }
-            });
-
-
         }
 
     }
