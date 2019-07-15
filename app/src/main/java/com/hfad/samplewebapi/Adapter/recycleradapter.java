@@ -13,17 +13,20 @@ import android.widget.TextView;
 
 import com.hfad.samplewebapi.R;
 import com.hfad.samplewebapi.model.FORCES.ForcesData;
+import com.hfad.samplewebapi.model.LOCATION.MF_location;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Callback;
 
-public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHolder1>  {
+public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHolder1> implements Filterable {
 
     private List<ForcesData> forcesdata=new ArrayList<>() ;
 
+
     private  OnItemClickListener mListener;
+
 
     public interface OnItemClickListener{
             void onItemClick(int position);
@@ -36,7 +39,9 @@ public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHo
 
     public recycleradapter ( List<ForcesData> forcesdata)
     {
+
         this.forcesdata=forcesdata;
+
     }
 
 

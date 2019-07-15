@@ -6,18 +6,24 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 
 
 import com.hfad.samplewebapi.Adapter.recycleradapter;
 import com.hfad.samplewebapi.model.FORCES.ForcesData;
+import com.hfad.samplewebapi.model.LOCATION.MF_location;
 import com.hfad.samplewebapi.rest.InterfaceForce1;
 import com.hfad.samplewebapi.rest.RetrofitClient;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,6 +68,7 @@ public class ForcesActivity extends AppCompatActivity implements recycleradapter
 
             }
         });
+
     }
 
     @Override
@@ -71,6 +78,9 @@ public class ForcesActivity extends AppCompatActivity implements recycleradapter
             intent.putExtra(forcename,clickeditem.getId());
             startActivity(intent);
     }
+
+
+
 }
 
 

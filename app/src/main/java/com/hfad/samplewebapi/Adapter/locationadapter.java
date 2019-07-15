@@ -40,7 +40,7 @@ public class locationadapter extends RecyclerView.Adapter<locationadapter.locati
         return locations.size();
     }
 
-    public class locationviewholder extends RecyclerView.ViewHolder {
+    public class locationviewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView category;
         TextView locationtype;
 
@@ -48,8 +48,14 @@ public class locationadapter extends RecyclerView.Adapter<locationadapter.locati
             super(itemview);
             category = itemview.findViewById(R.id.tvCategory);
             locationtype = itemview.findViewById(R.id.tvlocationtype);
+
         }
 
+        @Override
+        public void onClick(View v) {
+                    int position =getAdapterPosition();
+
+        }
     }
 
 }
