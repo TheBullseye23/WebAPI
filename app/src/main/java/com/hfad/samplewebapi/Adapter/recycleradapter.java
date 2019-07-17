@@ -20,7 +20,7 @@ import java.util.List;
 
 import retrofit2.Callback;
 
-public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHolder1> implements Filterable {
+public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHolder1>  {
 
     private List<ForcesData> forcesdata=new ArrayList<>() ;
 

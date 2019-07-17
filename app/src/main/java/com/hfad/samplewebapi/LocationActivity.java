@@ -1,10 +1,12 @@
 package com.hfad.samplewebapi;
 
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.hfad.samplewebapi.Adapter.locationadapter;
 import com.hfad.samplewebapi.model.LOCATION.MF_location;
@@ -63,6 +65,17 @@ public class LocationActivity extends AppCompatActivity  {
                 locations = response.body();
                 mlocationadapter = new locationadapter(locations);
                 mrecyclerview.setAdapter(mlocationadapter);
+                mlocationadapter.setOnItemClickListener(new locationadapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View itemView, int position) {
+                        Intent intent= new Intent(getApplicationContext(),LocationDetailsActivity.class);
+                        intent.putExtra("mcategory", locations.get(position).getCategory());
+                        intent.putExtra("mlocationtype",locations.get(position).getLocationType());
+                        intent.putExtra("mmonth",locations.get(position).getMonth());
+                        startActivity(intent);
+
+                    }
+                });
 
 
             }

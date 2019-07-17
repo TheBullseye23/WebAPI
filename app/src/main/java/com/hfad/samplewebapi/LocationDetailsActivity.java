@@ -8,7 +8,7 @@ import android.widget.EditText;
 public class LocationDetailsActivity extends AppCompatActivity {
 
     private  String dcategory;
-    private  String dlocationSubtype;
+    private  String dlocationtype;
     private  String dmonth;
 
 
@@ -19,7 +19,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         dcategory=intent.getStringExtra("mcategory");
-        dlocationSubtype=intent.getStringExtra("mlocationSubtype");
+        dlocationtype=intent.getStringExtra("mlocationtype");
         dmonth=intent.getStringExtra("mmonth");
 
         EditText category = findViewById(R.id.etcategory);
@@ -28,7 +28,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
         category.setText(dcategory);
         month.setText(dmonth);
-        locationsubtype.setText(dlocationSubtype);
+        locationsubtype.setText(dlocationtype);
 
     }
 }

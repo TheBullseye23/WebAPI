@@ -16,6 +16,15 @@ import java.util.List;
 public class locationadapter extends RecyclerView.Adapter<locationadapter.locationviewholder> {
 
     private List<MF_location> locations;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        public void onItemClick(View itemView, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public locationadapter(List<MF_location> locations) {
         this.locations = locations;
@@ -40,7 +49,7 @@ public class locationadapter extends RecyclerView.Adapter<locationadapter.locati
         return locations.size();
     }
 
-    public class locationviewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class locationviewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView category;
         TextView locationtype;
 
@@ -48,14 +57,21 @@ public class locationadapter extends RecyclerView.Adapter<locationadapter.locati
             super(itemview);
             category = itemview.findViewById(R.id.tvCategory);
             locationtype = itemview.findViewById(R.id.tvlocationtype);
+            itemview.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View v) {
-                    int position =getAdapterPosition();
+            if (listener != null) {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(itemView, position);
+                }
 
+            }
         }
-    }
 
+
+    }
 }
