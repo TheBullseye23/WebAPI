@@ -6,30 +6,28 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 
 
 import com.hfad.samplewebapi.Adapter.recycleradapter;
 import com.hfad.samplewebapi.model.FORCES.ForcesData;
-import com.hfad.samplewebapi.model.LOCATION.MF_location;
+
 import com.hfad.samplewebapi.rest.InterfaceForce1;
 import com.hfad.samplewebapi.rest.RetrofitClient;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ForcesActivity extends AppCompatActivity implements recycleradapter.OnItemClickListener {
+public class ForcesActivity extends AppCompatActivity implements recycleradapter.OnItemClickListener,SearchView.OnQueryTextListener {
 
     public static final String forcename=null;
 
@@ -69,6 +67,10 @@ public class ForcesActivity extends AppCompatActivity implements recycleradapter
             }
         });
 
+        SwipeController swipeController = new SwipeController();
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
     }
 
     @Override
@@ -79,8 +81,37 @@ public class ForcesActivity extends AppCompatActivity implements recycleradapter
             startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        MenuItem menuitem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuitem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        return true;
 
+    }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        String userinput = s.toLowerCase();
+        List<ForcesData> newlist = new ArrayList<>();
+
+        for(ForcesData fd:forcesData)
+        {
+            if(fd.getName().contains(userinput))
+                newlist.add(fd);
+        }
+
+        mrecycleradapter.updateList(newlist);
+        mrecycleradapter.notifyDataSetChanged();
+        return true;
+    }
 }
 
 
