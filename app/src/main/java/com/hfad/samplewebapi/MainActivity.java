@@ -24,4 +24,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void gotoFav(View view) {
+        Intent intent = new Intent(this,FavouritesActivity.class);
+        startActivity(intent);
+    }
 }

@@ -10,6 +10,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import com.hfad.samplewebapi.Adapter.recycleradapter;
@@ -27,9 +28,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ForcesActivity extends AppCompatActivity implements recycleradapter.OnItemClickListener,SearchView.OnQueryTextListener {
+public class ForcesActivity extends AppCompatActivity implements recycleradapter.OnItemClickListener {
 
-    public static final String forcename=null;
+    public static final String forcename = null;
 
     private RecyclerView recyclerView;
     private List<ForcesData> forcesData;
@@ -67,51 +68,18 @@ public class ForcesActivity extends AppCompatActivity implements recycleradapter
             }
         });
 
-        SwipeController swipeController = new SwipeController();
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-
-    }
+    };
 
     @Override
     public void onItemClick(int position) {
-            Intent intent = new Intent(this,SpecialForcesActivity.class);
-            ForcesData clickeditem = forcesData.get(position);
-            intent.putExtra(forcename,clickeditem.getId());
-            startActivity(intent);
+        Intent intent = new Intent(this, SpecialForcesActivity.class);
+        ForcesData clickeditem = forcesData.get(position);
+        intent.putExtra(forcename, clickeditem.getId());
+        startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
-        MenuItem menuitem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) menuitem.getActionView();
-        searchView.setOnQueryTextListener(this);
-        return true;
-
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String s) {
-
-        String userinput = s.toLowerCase();
-        List<ForcesData> newlist = new ArrayList<>();
-
-        for(ForcesData fd:forcesData)
-        {
-            if(fd.getName().contains(userinput))
-                newlist.add(fd);
-        }
-
-        mrecycleradapter.updateList(newlist);
-        mrecycleradapter.notifyDataSetChanged();
-        return true;
-    }
 }
+
+
 
 

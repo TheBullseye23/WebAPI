@@ -48,6 +48,7 @@
         android:layout_marginTop="120dp"
         android:background="#15E415"
         android:text="Favourites"
+        android:onClick="gotoFav"
         tools:layout_editor_absoluteX="135dp"
         tools:layout_editor_absoluteY="417dp" />
 </RelativeLayout>
