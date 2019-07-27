@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ForcesActivity extends AppCompatActivity implements recycleradapter.OnItemClickListener {
+public class ForcesActivity extends AppCompatActivity implements recycleradapter.OnItemClickListener,SearchView.OnQueryTextListener {
 
     public static final String forcename = null;
 
@@ -76,6 +76,36 @@ public class ForcesActivity extends AppCompatActivity implements recycleradapter
         ForcesData clickeditem = forcesData.get(position);
         intent.putExtra(forcename, clickeditem.getId());
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchview = (SearchView) menuItem.getActionView();
+        searchview.setOnQueryTextListener(this);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        String userinput=s.toLowerCase().trim();
+        List<ForcesData> newList = new ArrayList<>();
+
+        for(ForcesData fd: forcesData)
+        {
+            if(fd.getName().toLowerCase().contains(userinput))
+                newList.add(fd);
+        }
+
+        mrecycleradapter.updateList(newList);
+        return true;
     }
 
 }

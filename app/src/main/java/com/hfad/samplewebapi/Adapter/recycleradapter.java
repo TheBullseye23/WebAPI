@@ -87,7 +87,7 @@ public class recycleradapter extends RecyclerView.Adapter<recycleradapter.ViewHo
 
     public void updateList(List<ForcesData> newList)
     {
-        newList = new ArrayList<>();
+        forcesdata = new ArrayList<>();
         forcesdata.addAll(newList);
         notifyDataSetChanged();
     }
