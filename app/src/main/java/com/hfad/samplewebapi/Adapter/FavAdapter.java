@@ -16,6 +16,7 @@ import com.hfad.samplewebapi.SQLite.SQliteDatabase;
 import com.hfad.samplewebapi.model.FavData;
 import com.hfad.samplewebapi.model.LOCATION.MF_location;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewholder> {
@@ -67,17 +68,15 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewholder> {
             ecategory = itemView.findViewById(R.id.favCategory);
             elocationtype = itemView.findViewById(R.id.favLocationType);
             eid=itemView.findViewById(R.id.favid);
-            mLinearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                }
-            });
         }
-
-
     }
 
+    public  void updateList(List<FavData> newList)
+    {
+        mFavData = new ArrayList<>();
+        mFavData.addAll(newList);
+        notifyDataSetChanged();
+
+    }
 
 }
